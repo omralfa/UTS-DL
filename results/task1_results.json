@@ -1,0 +1,186 @@
+{
+  "device": "cuda",
+  "n_train": 38400,
+  "n_val": 9600,
+  "n_test": 16000,
+  "sanity_check": {
+    "final_loss": 0.0014,
+    "final_acc": 1.0
+  },
+  "ablation_models": {
+    "image_only": {
+      "val_macro_f1": 0.5737,
+      "val_f1_lini_A": 0.6356,
+      "val_f1_lini_B": 0.345,
+      "per_class_f1": {
+        "normal": 0.8137,
+        "gores": 0.6351,
+        "noda": 0.8564,
+        "retak": 0.4258,
+        "gelembung": 0.4818,
+        "las_dingin": 0.0,
+        "kontaminasi": 0.8035
+      }
+    },
+    "sensor_only": {
+      "val_macro_f1": 0.3476,
+      "val_f1_lini_A": 0.3473,
+      "val_f1_lini_B": 0.3484,
+      "per_class_f1": {
+        "normal": 0.721,
+        "gores": 0.0,
+        "noda": 0.0,
+        "retak": 0.0,
+        "gelembung": 0.7815,
+        "las_dingin": 0.9308,
+        "kontaminasi": 0.0
+      }
+    },
+    "late_fusion": {
+      "val_macro_f1": 0.7755,
+      "val_f1_lini_A": 0.8223,
+      "val_f1_lini_B": 0.6095,
+      "per_class_f1": {
+        "normal": 0.8831,
+        "gores": 0.6844,
+        "noda": 0.8605,
+        "retak": 0.4365,
+        "gelembung": 0.8106,
+        "las_dingin": 0.9283,
+        "kontaminasi": 0.8249
+      }
+    },
+    "early_concat": {
+      "val_macro_f1": 0.7763,
+      "val_f1_lini_A": 0.826,
+      "val_f1_lini_B": 0.6031,
+      "per_class_f1": {
+        "normal": 0.8828,
+        "gores": 0.6894,
+        "noda": 0.8666,
+        "retak": 0.4339,
+        "gelembung": 0.8141,
+        "las_dingin": 0.9211,
+        "kontaminasi": 0.826
+      }
+    },
+    "cross_attn": {
+      "val_macro_f1": 0.7805,
+      "val_f1_lini_A": 0.8255,
+      "val_f1_lini_B": 0.6244,
+      "per_class_f1": {
+        "normal": 0.8863,
+        "gores": 0.6989,
+        "noda": 0.8594,
+        "retak": 0.4457,
+        "gelembung": 0.8122,
+        "las_dingin": 0.9321,
+        "kontaminasi": 0.8289
+      }
+    }
+  },
+  "domain_shift_exp": {
+    "global_norm_no_aug": {
+      "val_macro_f1": 0.7611,
+      "val_f1_lini_A": 0.8094,
+      "val_f1_lini_B": 0.604
+    },
+    "per_line_norm_with_aug": {
+      "val_macro_f1": 0.7805,
+      "val_f1_lini_A": 0.8255,
+      "val_f1_lini_B": 0.6244,
+      "per_class_f1": {
+        "normal": 0.8863,
+        "gores": 0.6989,
+        "noda": 0.8594,
+        "retak": 0.4457,
+        "gelembung": 0.8122,
+        "las_dingin": 0.9321,
+        "kontaminasi": 0.8289
+      }
+    }
+  },
+  "label_noise_exp": {
+    "ce": 0.7745,
+    "ls": 0.7805,
+    "sce": 0.7783
+  },
+  "final_3seeds": {
+    "best_loss": "ls",
+    "seeds": [
+      {
+        "seed": 42,
+        "val_macro_f1": 0.8017,
+        "val_macro_f1_no_sensor": 0.5972
+      },
+      {
+        "seed": 102,
+        "val_macro_f1": 0.8441,
+        "val_macro_f1_no_sensor": 0.5864
+      },
+      {
+        "seed": 202,
+        "val_macro_f1": 0.8014,
+        "val_macro_f1_no_sensor": 0.6008
+      }
+    ],
+    "mean_val_f1": 0.8157,
+    "std_val_f1": 0.0201,
+    "ensemble_val_f1_raw": 0.8391,
+    "ensemble_val_f1_tuned": 0.8451,
+    "class_multipliers": [
+      0.9,
+      1.45,
+      0.75,
+      1.45,
+      0.6,
+      1.0,
+      1.0
+    ],
+    "ensemble_f1_lini_A": 0.8871,
+    "ensemble_f1_lini_B": 0.7128,
+    "missing_modality_eval": {
+      "full_sensor_f1": 0.8548,
+      "partial_sensor_f1": 0.769,
+      "natural_missing_all_sensor_f1": 0.5891,
+      "simulated_all_dropped_f1": 0.6009
+    },
+    "per_class_f1": {
+      "normal": 0.9124,
+      "gores": 0.7603,
+      "noda": 0.8818,
+      "retak": 0.6953,
+      "gelembung": 0.8364,
+      "las_dingin": 0.9333,
+      "kontaminasi": 0.8963
+    }
+  },
+  "mislabel_audit": {
+    "n_suspected": 133,
+    "pct_suspected": 1.39,
+    "by_shift_pct": {
+      "malam": 1.35,
+      "pagi": 1.24,
+      "siang": 1.57
+    },
+    "by_class_pct": {
+      "gelembung": 4.51,
+      "gores": 0.36,
+      "kontaminasi": 0.0,
+      "las_dingin": 0.92,
+      "noda": 2.52,
+      "normal": 0.98,
+      "retak": 2.64
+    }
+  },
+  "test_pred_distribution": {
+    "normal": 8885,
+    "gores": 1697,
+    "noda": 1353,
+    "las_dingin": 1335,
+    "retak": 1076,
+    "gelembung": 970,
+    "kontaminasi": 684
+  },
+  "elapsed_sec": 2445.7
+}
